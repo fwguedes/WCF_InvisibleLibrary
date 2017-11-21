@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{05032704-D5F7-4F8B-86C5-2CE6F2A26090}</ProjectGuid>
+    <ProjectGuid>{78BF457D-3149-4D04-A38F-7898D40B45CF}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WCF_BookService</RootNamespace>
-    <AssemblyName>WCF_BookService</AssemblyName>
+    <RootNamespace>WCF_LibraryDeskService</RootNamespace>
+    <AssemblyName>WCF_LibraryDeskService</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,16 +61,48 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BookService.svc" />
+    <None Include="Connected Services\ServiceReference1\LibraryManager.disco" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="LibraryDesk.svc" />
     <Content Include="Web.config" />
+    <None Include="Connected Services\ServiceReference1\LibraryManager1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\LibraryManager2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\ServiceReference1\WCF_LibraryDeskService.ServiceReference1.Book.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Exception\BookBorrowedException.cs" />
+    <Compile Include="Exception\BookNotFoundException.cs" />
+    <Compile Include="Exception\BookReturnedException.cs" />
+    <Compile Include="LibraryDesk.svc.cs">
+      <DependentUpon>LibraryDesk.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ILibraryDesk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\LibraryManager.wsdl" />
+    <None Include="Connected Services\ServiceReference1\LibraryManager.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -82,10 +114,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WCF_BookLibrary\WCF_BookLibrary.csproj">
-      <Project>{78a9296c-9348-4f6e-9017-eb8e77f0ddfe}</Project>
-      <Name>WCF_BookLibrary</Name>
-    </ProjectReference>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -100,9 +129,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58610</DevelopmentServerPort>
+          <DevelopmentServerPort>64262</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58610/</IISUrl>
+          <IISUrl>http://localhost:64262/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
