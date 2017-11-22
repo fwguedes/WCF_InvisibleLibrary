@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF_BookService", "WCF_BookService\WCF_BookService.csproj", "{05032704-D5F7-4F8B-86C5-2CE6F2A26090}"
 EndProject
@@ -21,6 +21,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF_LibraryDeskService", "WCF_LibraryDeskService\WCF_LibraryDeskService.csproj", "{78BF457D-3149-4D04-A38F-7898D40B45CF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A5FE4E14-7AE5-45EC-AD72-3A663A136007} = {A5FE4E14-7AE5-45EC-AD72-3A663A136007}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Consoles", "1-Consoles", "{5459876F-0E3D-4F54-AFDE-01769AFC693F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Management", "Console_LibraryOwner\Console_Management.csproj", "{B1259043-4C05-41D1-9334-80D85CC83828}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5FE4E14-7AE5-45EC-AD72-3A663A136007} = {A5FE4E14-7AE5-45EC-AD72-3A663A136007}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Desk", "Console_Desk\Console_Desk.csproj", "{6BDE23ED-94E5-4A70-BCAB-21D1900B3299}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78BF457D-3149-4D04-A38F-7898D40B45CF} = {78BF457D-3149-4D04-A38F-7898D40B45CF}
 	EndProjectSection
 EndProject
 Global
@@ -45,6 +57,14 @@ Global
 		{78BF457D-3149-4D04-A38F-7898D40B45CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78BF457D-3149-4D04-A38F-7898D40B45CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78BF457D-3149-4D04-A38F-7898D40B45CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1259043-4C05-41D1-9334-80D85CC83828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1259043-4C05-41D1-9334-80D85CC83828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1259043-4C05-41D1-9334-80D85CC83828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1259043-4C05-41D1-9334-80D85CC83828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BDE23ED-94E5-4A70-BCAB-21D1900B3299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BDE23ED-94E5-4A70-BCAB-21D1900B3299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BDE23ED-94E5-4A70-BCAB-21D1900B3299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BDE23ED-94E5-4A70-BCAB-21D1900B3299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +74,8 @@ Global
 		{78A9296C-9348-4F6E-9017-EB8E77F0DDFE} = {9A5F4E23-6413-44CB-871D-A2BF33BC5650}
 		{A5FE4E14-7AE5-45EC-AD72-3A663A136007} = {2A984CC1-A302-4AB9-BA45-AB410892D5DE}
 		{78BF457D-3149-4D04-A38F-7898D40B45CF} = {54D62CBE-0CBF-4569-A1F3-DCE95378C151}
+		{B1259043-4C05-41D1-9334-80D85CC83828} = {5459876F-0E3D-4F54-AFDE-01769AFC693F}
+		{6BDE23ED-94E5-4A70-BCAB-21D1900B3299} = {5459876F-0E3D-4F54-AFDE-01769AFC693F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A05BC7AF-48E9-4DEE-8CAA-882EED6B928B}

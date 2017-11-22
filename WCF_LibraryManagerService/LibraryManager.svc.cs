@@ -15,6 +15,7 @@ namespace WCF_LibraryManagerService
     public class LibraryManager : ILibraryManager
     {
         private static ConcurrentDictionary<Guid, Book> books = new ConcurrentDictionary<Guid, Book>();
+              
 
         public void AddBook(string isbn, string code, string title, string author, string subject)
         {
