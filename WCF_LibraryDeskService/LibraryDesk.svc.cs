@@ -20,12 +20,12 @@ namespace WCF_LibraryDeskService
                 cli.Open();
                 var book = cli.GetBooksByCode(code);
 
-                if (book == null)
-                    throw new BookNotFoundException($"Book Code {code} Not Found");
+                if (book == null)                  
+                    throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"));
 
                 if (book.IsBorrowed)
-                    throw new BookBorrowedException("Book already borrowed");
-
+                    throw new FaultException<BookBorrowedException>(new BookBorrowedException($"Book Code {code} already borrowed"));
+                
                 cli.UpdateToBorrowed(book.Id);
 
                 cli.Close();
@@ -42,11 +42,11 @@ namespace WCF_LibraryDeskService
                 var book = cli.GetBooksByCode(code);
 
                 if (book == null)
-                    throw new BookNotFoundException($"Book Code {code} Not Found");
+                   throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"));
 
                 if (! book.IsBorrowed)
-                    throw new BookReturnedException("Book already returned");
-
+                    throw new FaultException<BookReturnedException>(new BookReturnedException($"Book Code {code} already returned"));
+               
                 cli.UpdateToAvaible(book.Id);
 
                 cli.Close();

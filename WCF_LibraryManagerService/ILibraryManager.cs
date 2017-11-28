@@ -28,9 +28,12 @@ namespace WCF_LibraryManagerService
         Book GetBooksByCode(string code);
 
         [OperationContract]
-        void UpdateToBorrowed(Guid id);
+        void UpdateToBorrowed(Guid id,string client, DateTime dat);
 
         [OperationContract]
-        void UpdateToAvaible(Guid id);
+        void UpdateToAvaible(Guid id, string client, DateTime date);
+
+        [OperationContract]
+        bool ClientCanBorrowBook(string client);
     }
 }

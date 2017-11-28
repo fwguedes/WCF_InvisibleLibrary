@@ -15,13 +15,15 @@ namespace WCF_LibraryManagerService
     public class LibraryManager : ILibraryManager
     {
         private static ConcurrentDictionary<Guid, Book> books = new ConcurrentDictionary<Guid, Book>();
-              
+        private static IList<Loan> loans = new List<Loan>();
+        private static int MAX_BOOKS_ALLOWED = 1;
+        private static int MAX_DAYS_ALLOWED = 15;
 
         public void AddBook(string isbn, string code, string title, string author, string subject)
         {
             Book newBook;
 
-            using(var cli = new BookServiceClient())
+            using (var cli = new BookServiceClient())
             {
                 cli.Open();
                 newBook = cli.CreateBook(isbn, code, title, author, subject);
@@ -29,7 +31,7 @@ namespace WCF_LibraryManagerService
             }
 
             if (newBook != null)
-                books.TryAdd(newBook.Id,newBook);
+                books.TryAdd(newBook.Id, newBook);
         }
 
         public IList<Book> GetAllBooks()
@@ -52,18 +54,51 @@ namespace WCF_LibraryManagerService
             return GetAllBooks().Where(b => b.Subject.Equals(subject)).ToList();
         }
 
-        public void UpdateToAvaible(Guid id)
+        public void UpdateToAvaible(Guid id, string client, DateTime date)
         {
             Book book = books[id];
             book.IsBorrowed = false;
-            books.TryUpdate(id, book, book);
+            var updated = books.TryUpdate(id, book, book);
+
+            if (updated)
+            {
+                var thisLoan = loans.FirstOrDefault(l => l.IdBook == id);
+                loans.Remove(thisLoan);
+            }
         }
 
-        public void UpdateToBorrowed(Guid id)
+        public void UpdateToBorrowed(Guid id, string client, DateTime date)
         {
             Book book = books[id];
             book.IsBorrowed = true;
-            books.TryUpdate(id, book, book);
+            var updated = books.TryUpdate(id, book, book);
+
+            if (updated)
+            {
+                var loan = new Loan(id, client, date);
+                loans.Add(loan);
+            }
+        }
+
+        public bool ClientCanBorrowBook(string client)
+        {
+            return loans.Count(l => l.ClientName == client) <= MAX_BOOKS_ALLOWED;
+        }
+    }
+
+    public class Loan
+    {
+        public Guid IdBook { get; set; }
+
+        public string ClientName { get; set; }
+
+        public DateTime LoanDate { get; set; }
+
+        public Loan(Guid idBook, string clientName, DateTime loanDate)
+        {
+            IdBook = idBook;
+            ClientName = clientName;
+            LoanDate = loanDate;
         }
     }
 }
