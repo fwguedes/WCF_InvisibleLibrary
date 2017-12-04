@@ -10,15 +10,12 @@ using WCF_LibraryManagerService.WCFBookService;
 
 namespace WCF_LibraryManagerService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class LibraryManager : ILibraryManager
     {
         private static ConcurrentDictionary<Guid, Book> books = new ConcurrentDictionary<Guid, Book>();
         private static IList<Loan> loans = new List<Loan>();
-        private static int MAX_BOOKS_ALLOWED = 1;
-        private static int MAX_DAYS_ALLOWED = 15;
-
+      
         public void AddBook(string isbn, string code, string title, string author, string subject)
         {
             Book newBook;
@@ -56,6 +53,7 @@ namespace WCF_LibraryManagerService
 
         public void UpdateToAvaible(Guid id, string client, DateTime date)
         {
+                        
             Book book = books[id];
             book.IsBorrowed = false;
             var updated = books.TryUpdate(id, book, book);
@@ -69,6 +67,7 @@ namespace WCF_LibraryManagerService
 
         public void UpdateToBorrowed(Guid id, string client, DateTime date)
         {
+            
             Book book = books[id];
             book.IsBorrowed = true;
             var updated = books.TryUpdate(id, book, book);
@@ -79,20 +78,30 @@ namespace WCF_LibraryManagerService
                 loans.Add(loan);
             }
         }
-
-        public bool ClientCanBorrowBook(string client)
+               
+        public Loan GetLoan(Guid id)
         {
-            return loans.Count(l => l.ClientName == client) <= MAX_BOOKS_ALLOWED;
+            return loans.First(l => l.IdBook == id);
+        }
+
+        public IList<Loan> GetLoansFromClient(string client)
+        {
+            return loans.Where(l => l.ClientName == client).ToList();
         }
     }
 
+    [DataContract]
     public class Loan
     {
+        [DataMember]
         public Guid IdBook { get; set; }
 
+        [DataMember]
         public string ClientName { get; set; }
 
+        [DataMember]
         public DateTime LoanDate { get; set; }
+
 
         public Loan(Guid idBook, string clientName, DateTime loanDate)
         {

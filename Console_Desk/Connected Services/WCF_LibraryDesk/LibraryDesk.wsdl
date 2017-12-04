@@ -18,6 +18,12 @@
   <wsdl:message name="ILibraryDesk_ReturnBook_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReturnBookResponse" />
   </wsdl:message>
+  <wsdl:message name="ILibraryDesk_Authenticate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryDesk_Authenticate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
   <wsdl:portType name="ILibraryDesk">
     <wsdl:operation name="BorrowBook">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryDesk/BorrowBook" message="tns:ILibraryDesk_BorrowBook_InputMessage" />
@@ -26,6 +32,10 @@
     <wsdl:operation name="ReturnBook">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryDesk/ReturnBook" message="tns:ILibraryDesk_ReturnBook_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILibraryDesk/ReturnBookResponse" message="tns:ILibraryDesk_ReturnBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibraryDesk/Authenticate" message="tns:ILibraryDesk_Authenticate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibraryDesk/AuthenticateResponse" message="tns:ILibraryDesk_Authenticate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ILibraryDesk" type="tns:ILibraryDesk">
@@ -41,6 +51,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReturnBook">
       <soap:operation soapAction="http://tempuri.org/ILibraryDesk/ReturnBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://tempuri.org/ILibraryDesk/Authenticate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

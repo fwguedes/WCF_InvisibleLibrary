@@ -32,8 +32,12 @@ namespace WCF_LibraryManagerService
 
         [OperationContract]
         void UpdateToAvaible(Guid id, string client, DateTime date);
+              
 
         [OperationContract]
-        bool ClientCanBorrowBook(string client);
+        Loan GetLoan(Guid id);
+
+        [OperationContract]
+        IList<Loan> GetLoansFromClient(string client);
     }
 }

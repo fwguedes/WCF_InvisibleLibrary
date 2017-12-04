@@ -57,6 +57,9 @@
     <None Include="Connected Services\WCF_LibraryManager\Console_LibraryOwner.WCF_LibraryManager.Book.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\WCF_LibraryManager\Console_LibraryOwner.WCF_LibraryManager.Loan.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\WCF_LibraryManager\LibraryManager.wsdl" />
     <None Include="Connected Services\WCF_LibraryManager\LibraryManager.xsd">
       <SubType>Designer</SubType>
@@ -84,6 +87,9 @@
     <None Include="Connected Services\WCF_LibraryManager\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\WCF_LibraryManager\LibraryManager3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\WCF_LibraryManager\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

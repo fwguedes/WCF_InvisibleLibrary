@@ -29,6 +29,7 @@
     <MetadataFile FileName="LibraryManager.disco" MetadataType="Disco" ID="eaeff9f7-9fc8-42d4-ad45-fc6adfb9ffaa" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?disco" />
     <MetadataFile FileName="LibraryManager1.xsd" MetadataType="Schema" ID="e06f6530-3831-47f8-bc01-7e83d2a29c9d" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd1" />
     <MetadataFile FileName="LibraryManager2.xsd" MetadataType="Schema" ID="0a1d70cf-06f1-4390-9ba4-69bd03679528" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd2" />
+    <MetadataFile FileName="LibraryManager3.xsd" MetadataType="Schema" ID="eeb157c8-f0bd-437d-9fef-bde014812158" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

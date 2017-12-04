@@ -12,13 +12,16 @@ namespace Console_Desk
         static void Main(string[] args)
         {
             var cli = new LibraryDeskClient();
+            var clientName = "Filipe";
             cli.Open();
             try
             {
-                var response = cli.BorrowBook("A22");
+                cli.Authenticate(clientName);
+
+                var response = cli.BorrowBook("A22", clientName,DateTime.Now);
                 Console.WriteLine("Livro Pego");
 
-                response = cli.BorrowBook("A22");
+                response = cli.BorrowBook("A22", clientName, DateTime.Now);
             }catch(Exception ex)
             {
                 Console.WriteLine("Livro nao disponivel");

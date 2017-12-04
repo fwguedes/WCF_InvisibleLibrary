@@ -9,7 +9,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -27,6 +29,7 @@
     <MetadataFile FileName="LibraryManager.disco" MetadataType="Disco" ID="2d100a52-f2c9-4c54-830d-6c408fcdbeb9" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?disco" />
     <MetadataFile FileName="LibraryManager1.xsd" MetadataType="Schema" ID="9d7fd3b6-bb8d-4e30-9e1b-0081ba177d1f" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd1" />
     <MetadataFile FileName="LibraryManager2.xsd" MetadataType="Schema" ID="cbfe2ee6-c8fc-4739-b93f-05d8b3db956d" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd2" />
+    <MetadataFile FileName="LibraryManager3.xsd" MetadataType="Schema" ID="e761be51-78a0-42f8-b5bc-b9ab6503066f" SourceId="1" SourceUrl="http://localhost:63962/LibraryManager.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:63962/LibraryManager.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:63962/LibraryManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:63962/LibraryManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF_BookLibrary" />
+      <xsd:import schemaLocation="http://localhost:63962/LibraryManager.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCF_LibraryManagerService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILibraryManager_AddBook_InputMessage">
@@ -49,6 +50,24 @@
   <wsdl:message name="ILibraryManager_UpdateToAvaible_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateToAvaibleResponse" />
   </wsdl:message>
+  <wsdl:message name="ILibraryManager_ClientCanBorrowBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientCanBorrowBook" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryManager_ClientCanBorrowBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientCanBorrowBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryManager_GetLoan_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoan" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryManager_GetLoan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoanResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryManager_GetLoansFromClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoansFromClient" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryManager_GetLoansFromClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoansFromClientResponse" />
+  </wsdl:message>
   <wsdl:portType name="ILibraryManager">
     <wsdl:operation name="AddBook">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryManager/AddBook" message="tns:ILibraryManager_AddBook_InputMessage" />
@@ -77,6 +96,18 @@
     <wsdl:operation name="UpdateToAvaible">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryManager/UpdateToAvaible" message="tns:ILibraryManager_UpdateToAvaible_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILibraryManager/UpdateToAvaibleResponse" message="tns:ILibraryManager_UpdateToAvaible_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientCanBorrowBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibraryManager/ClientCanBorrowBook" message="tns:ILibraryManager_ClientCanBorrowBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibraryManager/ClientCanBorrowBookResponse" message="tns:ILibraryManager_ClientCanBorrowBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoan">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibraryManager/GetLoan" message="tns:ILibraryManager_GetLoan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibraryManager/GetLoanResponse" message="tns:ILibraryManager_GetLoan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoansFromClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibraryManager/GetLoansFromClient" message="tns:ILibraryManager_GetLoansFromClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibraryManager/GetLoansFromClientResponse" message="tns:ILibraryManager_GetLoansFromClient_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ILibraryManager" type="tns:ILibraryManager">
@@ -137,6 +168,33 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateToAvaible">
       <soap:operation soapAction="http://tempuri.org/ILibraryManager/UpdateToAvaible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientCanBorrowBook">
+      <soap:operation soapAction="http://tempuri.org/ILibraryManager/ClientCanBorrowBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoan">
+      <soap:operation soapAction="http://tempuri.org/ILibraryManager/GetLoan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoansFromClient">
+      <soap:operation soapAction="http://tempuri.org/ILibraryManager/GetLoansFromClient" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

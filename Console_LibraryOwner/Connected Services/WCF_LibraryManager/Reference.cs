@@ -154,6 +154,83 @@ namespace Console_LibraryOwner.WCF_LibraryManager {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Loan", Namespace="http://schemas.datacontract.org/2004/07/WCF_LibraryManagerService")]
+    [System.SerializableAttribute()]
+    public partial class Loan : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ClientNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdBookField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LoanDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName {
+            get {
+                return this.ClientNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClientNameField, value) != true)) {
+                    this.ClientNameField = value;
+                    this.RaisePropertyChanged("ClientName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdBook {
+            get {
+                return this.IdBookField;
+            }
+            set {
+                if ((this.IdBookField.Equals(value) != true)) {
+                    this.IdBookField = value;
+                    this.RaisePropertyChanged("IdBook");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LoanDate {
+            get {
+                return this.LoanDateField;
+            }
+            set {
+                if ((this.LoanDateField.Equals(value) != true)) {
+                    this.LoanDateField = value;
+                    this.RaisePropertyChanged("LoanDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCF_LibraryManager.ILibraryManager")]
     public interface ILibraryManager {
@@ -189,16 +266,28 @@ namespace Console_LibraryOwner.WCF_LibraryManager {
         System.Threading.Tasks.Task<Console_LibraryOwner.WCF_LibraryManager.Book> GetBooksByCodeAsync(string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToBorrowed", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToBorrowedResponse")]
-        void UpdateToBorrowed(System.Guid id);
+        void UpdateToBorrowed(System.Guid id, string client, System.DateTime dat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToBorrowed", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToBorrowedResponse")]
-        System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id);
+        System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id, string client, System.DateTime dat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToAvaible", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToAvaibleResponse")]
-        void UpdateToAvaible(System.Guid id);
+        void UpdateToAvaible(System.Guid id, string client, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToAvaible", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToAvaibleResponse")]
-        System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id);
+        System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id, string client, System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoan", ReplyAction="http://tempuri.org/ILibraryManager/GetLoanResponse")]
+        Console_LibraryOwner.WCF_LibraryManager.Loan GetLoan(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoan", ReplyAction="http://tempuri.org/ILibraryManager/GetLoanResponse")]
+        System.Threading.Tasks.Task<Console_LibraryOwner.WCF_LibraryManager.Loan> GetLoanAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoansFromClient", ReplyAction="http://tempuri.org/ILibraryManager/GetLoansFromClientResponse")]
+        System.Collections.Generic.List<Console_LibraryOwner.WCF_LibraryManager.Loan> GetLoansFromClient(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoansFromClient", ReplyAction="http://tempuri.org/ILibraryManager/GetLoansFromClientResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Console_LibraryOwner.WCF_LibraryManager.Loan>> GetLoansFromClientAsync(string client);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -268,20 +357,36 @@ namespace Console_LibraryOwner.WCF_LibraryManager {
             return base.Channel.GetBooksByCodeAsync(code);
         }
         
-        public void UpdateToBorrowed(System.Guid id) {
-            base.Channel.UpdateToBorrowed(id);
+        public void UpdateToBorrowed(System.Guid id, string client, System.DateTime dat) {
+            base.Channel.UpdateToBorrowed(id, client, dat);
         }
         
-        public System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id) {
-            return base.Channel.UpdateToBorrowedAsync(id);
+        public System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id, string client, System.DateTime dat) {
+            return base.Channel.UpdateToBorrowedAsync(id, client, dat);
         }
         
-        public void UpdateToAvaible(System.Guid id) {
-            base.Channel.UpdateToAvaible(id);
+        public void UpdateToAvaible(System.Guid id, string client, System.DateTime date) {
+            base.Channel.UpdateToAvaible(id, client, date);
         }
         
-        public System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id) {
-            return base.Channel.UpdateToAvaibleAsync(id);
+        public System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id, string client, System.DateTime date) {
+            return base.Channel.UpdateToAvaibleAsync(id, client, date);
+        }
+        
+        public Console_LibraryOwner.WCF_LibraryManager.Loan GetLoan(System.Guid id) {
+            return base.Channel.GetLoan(id);
+        }
+        
+        public System.Threading.Tasks.Task<Console_LibraryOwner.WCF_LibraryManager.Loan> GetLoanAsync(System.Guid id) {
+            return base.Channel.GetLoanAsync(id);
+        }
+        
+        public System.Collections.Generic.List<Console_LibraryOwner.WCF_LibraryManager.Loan> GetLoansFromClient(string client) {
+            return base.Channel.GetLoansFromClient(client);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Console_LibraryOwner.WCF_LibraryManager.Loan>> GetLoansFromClientAsync(string client) {
+            return base.Channel.GetLoansFromClientAsync(client);
         }
     }
 }

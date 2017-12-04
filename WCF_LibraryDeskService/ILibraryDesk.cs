@@ -14,10 +14,13 @@ namespace WCF_LibraryDeskService
     {
 
         [OperationContract]
-        bool BorrowBook(string code);
+        bool BorrowBook(string code,string client,DateTime date);
 
         [OperationContract]
-        bool ReturnBook(string code);
+        bool ReturnBook(string code, string client, DateTime date);
+
+        [OperationContract]
+        void Authenticate(string client);
         
     }
 

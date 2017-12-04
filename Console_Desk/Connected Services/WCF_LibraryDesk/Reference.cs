@@ -16,16 +16,22 @@ namespace Console_Desk.WCF_LibraryDesk {
     public interface ILibraryDesk {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/BorrowBook", ReplyAction="http://tempuri.org/ILibraryDesk/BorrowBookResponse")]
-        bool BorrowBook(string code);
+        bool BorrowBook(string code, string client, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/BorrowBook", ReplyAction="http://tempuri.org/ILibraryDesk/BorrowBookResponse")]
-        System.Threading.Tasks.Task<bool> BorrowBookAsync(string code);
+        System.Threading.Tasks.Task<bool> BorrowBookAsync(string code, string client, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/ReturnBook", ReplyAction="http://tempuri.org/ILibraryDesk/ReturnBookResponse")]
-        bool ReturnBook(string code);
+        bool ReturnBook(string code, string client, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/ReturnBook", ReplyAction="http://tempuri.org/ILibraryDesk/ReturnBookResponse")]
-        System.Threading.Tasks.Task<bool> ReturnBookAsync(string code);
+        System.Threading.Tasks.Task<bool> ReturnBookAsync(string code, string client, System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/Authenticate", ReplyAction="http://tempuri.org/ILibraryDesk/AuthenticateResponse")]
+        void Authenticate(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryDesk/Authenticate", ReplyAction="http://tempuri.org/ILibraryDesk/AuthenticateResponse")]
+        System.Threading.Tasks.Task AuthenticateAsync(string client);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +61,28 @@ namespace Console_Desk.WCF_LibraryDesk {
                 base(binding, remoteAddress) {
         }
         
-        public bool BorrowBook(string code) {
-            return base.Channel.BorrowBook(code);
+        public bool BorrowBook(string code, string client, System.DateTime date) {
+            return base.Channel.BorrowBook(code, client, date);
         }
         
-        public System.Threading.Tasks.Task<bool> BorrowBookAsync(string code) {
-            return base.Channel.BorrowBookAsync(code);
+        public System.Threading.Tasks.Task<bool> BorrowBookAsync(string code, string client, System.DateTime date) {
+            return base.Channel.BorrowBookAsync(code, client, date);
         }
         
-        public bool ReturnBook(string code) {
-            return base.Channel.ReturnBook(code);
+        public bool ReturnBook(string code, string client, System.DateTime date) {
+            return base.Channel.ReturnBook(code, client, date);
         }
         
-        public System.Threading.Tasks.Task<bool> ReturnBookAsync(string code) {
-            return base.Channel.ReturnBookAsync(code);
+        public System.Threading.Tasks.Task<bool> ReturnBookAsync(string code, string client, System.DateTime date) {
+            return base.Channel.ReturnBookAsync(code, client, date);
+        }
+        
+        public void Authenticate(string client) {
+            base.Channel.Authenticate(client);
+        }
+        
+        public System.Threading.Tasks.Task AuthenticateAsync(string client) {
+            return base.Channel.AuthenticateAsync(client);
         }
     }
 }

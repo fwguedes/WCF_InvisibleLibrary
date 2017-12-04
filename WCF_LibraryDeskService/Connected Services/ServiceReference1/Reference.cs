@@ -154,6 +154,83 @@ namespace WCF_LibraryDeskService.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Loan", Namespace="http://schemas.datacontract.org/2004/07/WCF_LibraryManagerService")]
+    [System.SerializableAttribute()]
+    public partial class Loan : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ClientNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdBookField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LoanDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName {
+            get {
+                return this.ClientNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClientNameField, value) != true)) {
+                    this.ClientNameField = value;
+                    this.RaisePropertyChanged("ClientName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdBook {
+            get {
+                return this.IdBookField;
+            }
+            set {
+                if ((this.IdBookField.Equals(value) != true)) {
+                    this.IdBookField = value;
+                    this.RaisePropertyChanged("IdBook");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LoanDate {
+            get {
+                return this.LoanDateField;
+            }
+            set {
+                if ((this.LoanDateField.Equals(value) != true)) {
+                    this.LoanDateField = value;
+                    this.RaisePropertyChanged("LoanDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ILibraryManager")]
     public interface ILibraryManager {
@@ -165,22 +242,22 @@ namespace WCF_LibraryDeskService.ServiceReference1 {
         System.Threading.Tasks.Task AddBookAsync(string isbn, string code, string title, string author, string subject);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetAllBooks", ReplyAction="http://tempuri.org/ILibraryManager/GetAllBooksResponse")]
-        WCF_LibraryDeskService.ServiceReference1.Book[] GetAllBooks();
+        System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetAllBooks();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetAllBooks", ReplyAction="http://tempuri.org/ILibraryManager/GetAllBooksResponse")]
-        System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetAllBooksAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetAllBooksAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetBooksBySubject", ReplyAction="http://tempuri.org/ILibraryManager/GetBooksBySubjectResponse")]
-        WCF_LibraryDeskService.ServiceReference1.Book[] GetBooksBySubject(string subject);
+        System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetBooksBySubject(string subject);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetBooksBySubject", ReplyAction="http://tempuri.org/ILibraryManager/GetBooksBySubjectResponse")]
-        System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetBooksBySubjectAsync(string subject);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetBooksBySubjectAsync(string subject);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetBooksByAuthor", ReplyAction="http://tempuri.org/ILibraryManager/GetBooksByAuthorResponse")]
-        WCF_LibraryDeskService.ServiceReference1.Book[] GetBooksByAuthor(string author);
+        System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetBooksByAuthor(string author);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetBooksByAuthor", ReplyAction="http://tempuri.org/ILibraryManager/GetBooksByAuthorResponse")]
-        System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetBooksByAuthorAsync(string author);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetBooksByAuthorAsync(string author);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetBooksByCode", ReplyAction="http://tempuri.org/ILibraryManager/GetBooksByCodeResponse")]
         WCF_LibraryDeskService.ServiceReference1.Book GetBooksByCode(string code);
@@ -189,16 +266,34 @@ namespace WCF_LibraryDeskService.ServiceReference1 {
         System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book> GetBooksByCodeAsync(string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToBorrowed", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToBorrowedResponse")]
-        void UpdateToBorrowed(System.Guid id);
+        void UpdateToBorrowed(System.Guid id, string client, System.DateTime dat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToBorrowed", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToBorrowedResponse")]
-        System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id);
+        System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id, string client, System.DateTime dat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToAvaible", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToAvaibleResponse")]
-        void UpdateToAvaible(System.Guid id);
+        void UpdateToAvaible(System.Guid id, string client, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/UpdateToAvaible", ReplyAction="http://tempuri.org/ILibraryManager/UpdateToAvaibleResponse")]
-        System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id);
+        System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id, string client, System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/ClientCanBorrowBook", ReplyAction="http://tempuri.org/ILibraryManager/ClientCanBorrowBookResponse")]
+        bool ClientCanBorrowBook(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/ClientCanBorrowBook", ReplyAction="http://tempuri.org/ILibraryManager/ClientCanBorrowBookResponse")]
+        System.Threading.Tasks.Task<bool> ClientCanBorrowBookAsync(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoan", ReplyAction="http://tempuri.org/ILibraryManager/GetLoanResponse")]
+        WCF_LibraryDeskService.ServiceReference1.Loan GetLoan(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoan", ReplyAction="http://tempuri.org/ILibraryManager/GetLoanResponse")]
+        System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Loan> GetLoanAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoansFromClient", ReplyAction="http://tempuri.org/ILibraryManager/GetLoansFromClientResponse")]
+        System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Loan> GetLoansFromClient(string client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILibraryManager/GetLoansFromClient", ReplyAction="http://tempuri.org/ILibraryManager/GetLoansFromClientResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Loan>> GetLoansFromClientAsync(string client);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -236,27 +331,27 @@ namespace WCF_LibraryDeskService.ServiceReference1 {
             return base.Channel.AddBookAsync(isbn, code, title, author, subject);
         }
         
-        public WCF_LibraryDeskService.ServiceReference1.Book[] GetAllBooks() {
+        public System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetAllBooks() {
             return base.Channel.GetAllBooks();
         }
         
-        public System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetAllBooksAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetAllBooksAsync() {
             return base.Channel.GetAllBooksAsync();
         }
         
-        public WCF_LibraryDeskService.ServiceReference1.Book[] GetBooksBySubject(string subject) {
+        public System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetBooksBySubject(string subject) {
             return base.Channel.GetBooksBySubject(subject);
         }
         
-        public System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetBooksBySubjectAsync(string subject) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetBooksBySubjectAsync(string subject) {
             return base.Channel.GetBooksBySubjectAsync(subject);
         }
         
-        public WCF_LibraryDeskService.ServiceReference1.Book[] GetBooksByAuthor(string author) {
+        public System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book> GetBooksByAuthor(string author) {
             return base.Channel.GetBooksByAuthor(author);
         }
         
-        public System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Book[]> GetBooksByAuthorAsync(string author) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Book>> GetBooksByAuthorAsync(string author) {
             return base.Channel.GetBooksByAuthorAsync(author);
         }
         
@@ -268,20 +363,44 @@ namespace WCF_LibraryDeskService.ServiceReference1 {
             return base.Channel.GetBooksByCodeAsync(code);
         }
         
-        public void UpdateToBorrowed(System.Guid id) {
-            base.Channel.UpdateToBorrowed(id);
+        public void UpdateToBorrowed(System.Guid id, string client, System.DateTime dat) {
+            base.Channel.UpdateToBorrowed(id, client, dat);
         }
         
-        public System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id) {
-            return base.Channel.UpdateToBorrowedAsync(id);
+        public System.Threading.Tasks.Task UpdateToBorrowedAsync(System.Guid id, string client, System.DateTime dat) {
+            return base.Channel.UpdateToBorrowedAsync(id, client, dat);
         }
         
-        public void UpdateToAvaible(System.Guid id) {
-            base.Channel.UpdateToAvaible(id);
+        public void UpdateToAvaible(System.Guid id, string client, System.DateTime date) {
+            base.Channel.UpdateToAvaible(id, client, date);
         }
         
-        public System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id) {
-            return base.Channel.UpdateToAvaibleAsync(id);
+        public System.Threading.Tasks.Task UpdateToAvaibleAsync(System.Guid id, string client, System.DateTime date) {
+            return base.Channel.UpdateToAvaibleAsync(id, client, date);
+        }
+        
+        public bool ClientCanBorrowBook(string client) {
+            return base.Channel.ClientCanBorrowBook(client);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ClientCanBorrowBookAsync(string client) {
+            return base.Channel.ClientCanBorrowBookAsync(client);
+        }
+        
+        public WCF_LibraryDeskService.ServiceReference1.Loan GetLoan(System.Guid id) {
+            return base.Channel.GetLoan(id);
+        }
+        
+        public System.Threading.Tasks.Task<WCF_LibraryDeskService.ServiceReference1.Loan> GetLoanAsync(System.Guid id) {
+            return base.Channel.GetLoanAsync(id);
+        }
+        
+        public System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Loan> GetLoansFromClient(string client) {
+            return base.Channel.GetLoansFromClient(client);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WCF_LibraryDeskService.ServiceReference1.Loan>> GetLoansFromClientAsync(string client) {
+            return base.Channel.GetLoansFromClientAsync(client);
         }
     }
 }

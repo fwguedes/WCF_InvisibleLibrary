@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WCF_LibraryManagerService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCF_LibraryManagerService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:63962/LibraryManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Loan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdBook" type="ser:guid" />
+      <xs:element minOccurs="0" name="LoanDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Loan" nillable="true" type="tns:Loan" />
+  <xs:complexType name="ArrayOfLoan">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Loan" nillable="true" type="tns:Loan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoan" nillable="true" type="tns:ArrayOfLoan" />
+</xs:schema>
