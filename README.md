@@ -38,12 +38,12 @@
 <h2>WCF_LibraryDesk</h2>
 <p>Se comunica com o WCF_LibraryManager para realizar os emprestimos e as devolucoes
 
-<h2>bool BorrowBook(string code,string client,DateTime date)</h2>
+<h3>bool BorrowBook(string code,string client,DateTime date)</h3>
 <p>Aluga o livro selecionado no nome do cliente selecionado
 
-<h2>bool ReturnBook(string code, string client, DateTime date)</h2>
+<h3>bool ReturnBook(string code, string client, DateTime date)</h3>
 <p>Retorna um livro selecionado
 
-<h2>void Authenticate(string client)</h2>
+<h3>void Authenticate(string client)</h3>
 <p>Autentica o cliente no sistema
          
