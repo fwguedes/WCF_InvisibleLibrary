@@ -38,6 +38,9 @@ namespace WCF_LibraryDeskService
 
         public bool BorrowBook(string code, string client, DateTime date)
         {
+            try
+            {
+            
             if (!authenticated)
                 throw new FaultException<NotAuthenticatedException>(new NotAuthenticatedException($"Restricted Area"));
 
@@ -48,15 +51,18 @@ namespace WCF_LibraryDeskService
                 var book = cli.GetBooksByCode(code);
 
                 if (book == null)                  
-                    throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"));
+                    throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"),
+                                                                    new FaultReason($"Book Code {code} Not Found"));
                 
                 if (book.IsBorrowed)
-                    throw new FaultException<BookBorrowedException>(new BookBorrowedException($"Book Code {code} already borrowed"));
+                    throw new FaultException<BookBorrowedException>(new BookBorrowedException($"Book Code {code} already borrowed"),
+                                                                    new FaultReason($"Book Code {code} already borrowed"));
 
                 var loans = cli.GetLoansFromClient(client);
 
                 if (loans.Count == MAX_BOOKS_ALLOWED)
-                    throw new FaultException<MaximumExceededException>(new MaximumExceededException($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"));
+                    throw new FaultException<MaximumExceededException>(new MaximumExceededException($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"),
+                                                                       new FaultReason($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"));
 
                 cli.UpdateToBorrowed(book.Id, client,date);
 
@@ -64,10 +70,14 @@ namespace WCF_LibraryDeskService
             }
 
             return true;
+            }
+
+            catch { throw; }
         }
 
         public bool ReturnBook(string code, string client, DateTime date)
         {
+            try { 
 
             if (!authenticated)
                 throw new FaultException<NotAuthenticatedException>(new NotAuthenticatedException($"Restricted Area"));
@@ -97,6 +107,8 @@ namespace WCF_LibraryDeskService
             }
 
             return true;
+            }
+            catch { throw; }
         }
     }
 }

@@ -29,6 +29,8 @@ namespace Console_Desk
             
             cli.Close();
 
+            Console.ReadKey();
+
         }
     }
 }
