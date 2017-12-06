@@ -26,7 +26,7 @@ namespace WCF_LibraryDeskService
         {
             clients = new List<string>()
             {
-                "Filipe"
+                "Filipe","Joao"
             };
         }
 

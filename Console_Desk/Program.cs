@@ -12,8 +12,8 @@ namespace Console_Desk
     {
         static void Main(string[] args)
         {
-            Thread t1 = new Thread(Program.TakeBook);
-            Thread t2 = new Thread(Program.TakeBook);
+            Thread t1 = new Thread(Program.TakeBookFilipe);
+            Thread t2 = new Thread(Program.TakeBookFilipe);
 
             t1.Start();
             t2.Start();
@@ -22,7 +22,7 @@ namespace Console_Desk
 
         }
 
-        public static void TakeBook()
+        public static void TakeBookFilipe()
         {
             var cli = new LibraryDeskClient();
             var clientName = "Filipe";
@@ -41,6 +41,27 @@ namespace Console_Desk
             }
 
             cli.Close();           
+        }
+
+        public static void TakeBookJoao()
+        {
+            var cli = new LibraryDeskClient();
+            var clientName = "Joao";
+            cli.Open();
+            try
+            {
+                cli.Authenticate(clientName);
+
+                var response = cli.BorrowBook("A22", clientName, DateTime.Now);
+                Console.WriteLine("Livro Pego");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            cli.Close();
         }
     }
 }
