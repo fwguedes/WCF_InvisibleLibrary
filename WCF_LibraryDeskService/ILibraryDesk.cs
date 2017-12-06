@@ -14,9 +14,17 @@ namespace WCF_LibraryDeskService
     {
 
         [OperationContract]
+        [FaultContract(typeof(BookNotFoundException))]
+        [FaultContract(typeof(NotAuthenticatedException))]
+        [FaultContract(typeof(BookBorrowedException))]
+        [FaultContract(typeof(MaximumExceededException))]
         bool BorrowBook(string code,string client,DateTime date);
 
         [OperationContract]
+        [FaultContract(typeof(BookNotFoundException))]
+        [FaultContract(typeof(NotAuthenticatedException))]
+        [FaultContract(typeof(BookReturnedException))]
+        [FaultContract(typeof(FineException))]
         bool ReturnBook(string code, string client, DateTime date);
 
         [OperationContract]

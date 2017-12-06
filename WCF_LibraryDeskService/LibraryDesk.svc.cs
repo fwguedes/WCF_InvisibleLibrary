@@ -5,13 +5,14 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
 using WCF_LibraryDeskService.Exception;
 using WCF_LibraryDeskService.ServiceReference1;
 
 namespace WCF_LibraryDeskService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class LibraryDesk : ILibraryDesk
+       public class LibraryDesk : ILibraryDesk
     {
 
         private static int MAX_BOOKS_ALLOWED = 1;
@@ -19,6 +20,7 @@ namespace WCF_LibraryDeskService
         private static int FINE = 2;
         private static IList<string> clients;
         private static bool authenticated = false;
+        private static object locker = new object();
 
         public LibraryDesk()
         {
@@ -40,39 +42,42 @@ namespace WCF_LibraryDeskService
         {
             try
             {
-            
-            if (!authenticated)
-                throw new FaultException<NotAuthenticatedException>(new NotAuthenticatedException($"Restricted Area"));
+                if (!authenticated)
+                    throw new FaultException<NotAuthenticatedException>(new NotAuthenticatedException($"Restricted Area"));
 
-            using (var cli = new LibraryManagerClient())
-            {
-                cli.Open();
-                
-                var book = cli.GetBooksByCode(code);
+                using (var cli = new LibraryManagerClient())
+                {
+                    cli.Open();
 
-                if (book == null)                  
-                    throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"),
-                                                                    new FaultReason($"Book Code {code} Not Found"));
-                
-                if (book.IsBorrowed)
-                    throw new FaultException<BookBorrowedException>(new BookBorrowedException($"Book Code {code} already borrowed"),
-                                                                    new FaultReason($"Book Code {code} already borrowed"));
+                    var book = cli.GetBooksByCode(code);
 
-                var loans = cli.GetLoansFromClient(client);
+                    if (book == null)
+                        throw new FaultException<BookNotFoundException>(new BookNotFoundException($"Book Code {code} Not Found"),
+                                                                        new FaultReason($"Book Code {code} Not Found"));
+                   
+                    lock (locker)
+                    {
+                        if (book.IsBorrowed)
+                            throw new FaultException<BookBorrowedException>(new BookBorrowedException($"Book Code {code} already borrowed"),
+                                                                            new FaultReason($"Book Code {code} already borrowed"));
 
-                if (loans.Count == MAX_BOOKS_ALLOWED)
-                    throw new FaultException<MaximumExceededException>(new MaximumExceededException($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"),
-                                                                       new FaultReason($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"));
+                        var loans = cli.GetLoansFromClient(client);
 
-                cli.UpdateToBorrowed(book.Id, client,date);
+                        if (loans.Count == MAX_BOOKS_ALLOWED)
+                            throw new FaultException<MaximumExceededException>(new MaximumExceededException($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"),
+                                                                               new FaultReason($"You cannot borrow more than {MAX_BOOKS_ALLOWED} books"));
 
-                cli.Close();
+                        cli.UpdateToBorrowed(book.Id, client, date);
+                    }
+
+
+                    cli.Close();
+                }
+
+                return true;
             }
-
-            return true;
-            }
-
-            catch { throw; }
+            catch { throw; }     
+               
         }
 
         public bool ReturnBook(string code, string client, DateTime date)

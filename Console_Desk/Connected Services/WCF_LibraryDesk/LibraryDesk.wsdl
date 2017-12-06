@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:64262/LibraryDesk.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64262/LibraryDesk.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF_LibraryDeskService.Exception" />
       <xsd:import schemaLocation="http://localhost:64262/LibraryDesk.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
@@ -11,6 +12,9 @@
   </wsdl:message>
   <wsdl:message name="ILibraryDesk_BorrowBook_OutputMessage">
     <wsdl:part name="parameters" element="tns:BorrowBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibraryDesk_BorrowBook_BookNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WCF_LibraryDeskService.Exception" name="detail" element="q1:BookNotFoundException" />
   </wsdl:message>
   <wsdl:message name="ILibraryDesk_ReturnBook_InputMessage">
     <wsdl:part name="parameters" element="tns:ReturnBook" />
@@ -28,6 +32,7 @@
     <wsdl:operation name="BorrowBook">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryDesk/BorrowBook" message="tns:ILibraryDesk_BorrowBook_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILibraryDesk/BorrowBookResponse" message="tns:ILibraryDesk_BorrowBook_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ILibraryDesk/BorrowBookBookNotFoundExceptionFault" name="BookNotFoundExceptionFault" message="tns:ILibraryDesk_BorrowBook_BookNotFoundExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReturnBook">
       <wsdl:input wsaw:Action="http://tempuri.org/ILibraryDesk/ReturnBook" message="tns:ILibraryDesk_ReturnBook_InputMessage" />
@@ -48,6 +53,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="BookNotFoundExceptionFault">
+        <soap:fault use="literal" name="BookNotFoundExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReturnBook">
       <soap:operation soapAction="http://tempuri.org/ILibraryDesk/ReturnBook" style="document" />

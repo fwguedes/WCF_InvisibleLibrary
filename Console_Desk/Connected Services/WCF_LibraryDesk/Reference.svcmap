@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f0988642-a1e8-4259-851e-fcde136d0513" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="879ddad0-faaa-423e-a7c4-654731b55761" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -9,7 +9,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -22,10 +24,11 @@
     <MetadataSource Address="http://localhost:64262/LibraryDesk.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LibraryDesk.xsd" MetadataType="Schema" ID="c89f2af8-861e-4c4a-ac8e-8272dc4686f3" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?xsd=xsd1" />
-    <MetadataFile FileName="LibraryDesk1.xsd" MetadataType="Schema" ID="c0919b08-f3a9-4f24-a770-5bd22dcc3c78" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?xsd=xsd0" />
-    <MetadataFile FileName="LibraryDesk.disco" MetadataType="Disco" ID="c880977b-4e59-4e85-bea3-40e58e7c0ae9" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?disco" />
-    <MetadataFile FileName="LibraryDesk.wsdl" MetadataType="Wsdl" ID="261552c5-9380-466a-b6a1-df3673698dea" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?wsdl" />
+    <MetadataFile FileName="LibraryDesk.xsd" MetadataType="Schema" ID="0d5f3394-0956-439c-8ae5-fb577a05deed" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?xsd=xsd1" />
+    <MetadataFile FileName="LibraryDesk1.xsd" MetadataType="Schema" ID="c892b7bf-fc75-439d-82c4-332ae17fc1ca" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?xsd=xsd0" />
+    <MetadataFile FileName="LibraryDesk.disco" MetadataType="Disco" ID="ba944c15-7a06-46f0-becc-1045c6ebc91e" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?disco" />
+    <MetadataFile FileName="LibraryDesk2.xsd" MetadataType="Schema" ID="1107175a-1cde-46e4-b9d9-d7fe9365eadf" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?xsd=xsd2" />
+    <MetadataFile FileName="LibraryDesk.wsdl" MetadataType="Wsdl" ID="ce9b0e5e-1fe9-4bb4-a0a2-89436bbb2085" SourceId="1" SourceUrl="http://localhost:64262/LibraryDesk.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

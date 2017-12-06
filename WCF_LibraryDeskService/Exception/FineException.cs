@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace WCF_LibraryDeskService.Exception
 {
-    public class FineException : HttpException
+    [DataContract]
+    public class FineException 
     {
-        public FineException(string message) : base(message)
+        public FineException(string message) 
         {
         }
     }

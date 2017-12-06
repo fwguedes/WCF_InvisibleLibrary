@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace WCF_LibraryDeskService.Exception
 {
-    public class BookNotFoundException : HttpException
+    [DataContract]
+    public class BookNotFoundException 
     {
-        public BookNotFoundException(string message) : base(message)
+        public BookNotFoundException(string message) 
         {
         }
     }
